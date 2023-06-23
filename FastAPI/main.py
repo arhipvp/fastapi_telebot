@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-import httpx
+import requests
+
 from dotenv import load_dotenv
 import os
 
@@ -8,14 +9,14 @@ load_dotenv()
 app = FastAPI()
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
-MESSAGE = 'YOUR_MESSAGE'
+MESSAGE = 'Кто-то зашел!'
 
 @app.get('/')
 def hello():
+    
     url = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
     data = {'chat_id': CHAT_ID, 'text': MESSAGE}
+    response = requests.post(url, data=data)
 
-    client = httpx.AsyncClient()
-    response = client.post(url, data=data)
-    response.send(data)
-    return 'jj'
+    
+    return response.json()
