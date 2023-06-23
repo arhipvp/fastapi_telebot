@@ -5,6 +5,7 @@ import os
 load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+MESSAGE = 'Кто-то пишет в телегу'
 
 if __name__ == '__main__':
 
@@ -13,7 +14,7 @@ if __name__ == '__main__':
 
     @dp.message_handler()
     async def echo(message: types.message):
-        await message.answer(text='кто-то потрогал api')
+        await message.answer(text=MESSAGE)
 
     executor.start_polling(dp)
 

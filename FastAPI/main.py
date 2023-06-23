@@ -1,15 +1,16 @@
-from fastapi import FastAPI
-import requests
-
-from dotenv import load_dotenv
 import os
+
+import requests
+from dotenv import load_dotenv
+
+from fastapi import FastAPI
 
 load_dotenv()
 
 app = FastAPI()
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
-MESSAGE = 'Кто-то зашел!'
+MESSAGE = 'Кто-то трогает API!'
 
 @app.get('/')
 def hello():
