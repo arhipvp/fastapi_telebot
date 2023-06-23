@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  fastapi:
+    build: fastapi/
+    ports:
+      - "80:80"
+    env_file:
+      - .env      
+
+  telegrambot:
+    build: bot/
+    env_file:
+      - .env
