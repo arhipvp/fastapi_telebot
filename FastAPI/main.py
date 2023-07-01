@@ -22,7 +22,6 @@ async def send_message():
     await bot.send_message(CHAT_ID, MESSAGE)
 
 
-
 @app.get('/')
 async def hello():
     asyncio.get_running_loop().create_task(send_message())

@@ -17,4 +17,3 @@ if __name__ == '__main__':
         await message.answer(text=MESSAGE)
 
     executor.start_polling(dp)
-
