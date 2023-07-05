@@ -1,23 +1,21 @@
 import asyncio
-import os
+import sys
 
-from aiogram import Bot, Dispatcher
 from dotenv import load_dotenv
-
 from fastapi import FastAPI
+
+# это я чтоб с командной строки запустить прокидываю путь к проекту в PYTHONPATH, без докера
+sys.path.append('D:\\PyCharm_projects\\fastapi_telebot')
+
+from bot.main import bot, CHAT_ID
 
 load_dotenv()
 
 app = FastAPI()
 
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-CHAT_ID = os.getenv('CHAT_ID')
 MESSAGE = 'Кто-то трогает API!'
-bot = Bot(TELEGRAM_TOKEN)
-dp = Dispatcher(bot)
 
 
-@dp.message_handler()
 async def send_message():
     await bot.send_message(CHAT_ID, MESSAGE)
 
