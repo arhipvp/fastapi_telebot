@@ -1,9 +1,9 @@
 import asyncio
+import datetime
 import os
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
-
 from fastapi import FastAPI
 
 load_dotenv()
@@ -20,9 +20,21 @@ dp = Dispatcher(bot)
 @dp.message_handler()
 async def send_message():
     await bot.send_message(CHAT_ID, MESSAGE)
+    
+@dp.message_handler()
+async def echo(message: types.Message):
+    await message.answer(message.text)
+    
 
 
 @app.get('/')
 async def hello():
-    asyncio.get_running_loop().create_task(send_message())
+    loop = asyncio.get_running_loop()
+    loop.create_task(send_message())
+    
     return MESSAGE
+
+
+
+
+
