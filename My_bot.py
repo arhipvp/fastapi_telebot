@@ -12,7 +12,8 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
 async def echo(message: types.message):
-    await bot.send_message(CHAT_ID, 'FFF FFF')
+    print ('бот получил сообщение', message)
+    await bot.send_message(CHAT_ID, 'Это хендлер')
     
 # @dp.message_handler()
 # async def send_message():
